@@ -1,0 +1,6 @@
+{
+    "dbConfig": {
+        "url": "mongodb+srv://ash99449:9944902340@cluster0.gjs7tw8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        "db": "messaging-application"
+    }
+}

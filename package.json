@@ -1,0 +1,23 @@
+{
+  "name": "messaging-app-server",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node ./www.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "messaging-app-server": "file:",
+    "mongodb": "^6.13.0",
+    "morgan": "~1.9.1",
+    "node-cache": "^5.1.2",
+    "uuid": "^11.0.5"
+  }
+}
