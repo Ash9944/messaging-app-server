@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { fetchMessages , fetchAllMessages } from '../services/messageServices.js';
+import { fetchMessages, fetchAllMessages } from '../services/messageServices.js';
 var router = Router();
 
-router.get('/one/to/one/:userId/:reciptentId', async function (req, res, next) {
+router.get('/fetch/:userId/:reciptentId/:groupId', async function (req, res, next) {
     try {
         if (!req.params.userId || !req.params.reciptentId) {
             throw new Error("Mandatory fields missing");
         }
 
-        let response = await fetchMessages(req.params.userId, req.params.reciptentId);
+        let response = await fetchMessages(req.params.userId, req.params.reciptentId, req.params.groupId === "undefined" ? null : req.params.groupId);
         res.send(response);
     } catch (error) {
         res.status(500).send({ error: error.name, message: error.message });

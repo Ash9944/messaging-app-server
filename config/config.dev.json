@@ -1,6 +1,15 @@
 {
     "dbConfig": {
-        "url": "mongodb+srv://ash99449:9944902340@cluster0.gjs7tw8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        "url": "mongodb://127.0.0.1:27018/",
         "db": "messaging-application"
+    },
+    "aws": {
+        "bucketName": "message-app-123",
+        "bucketUrl": "https://message-app-123.s3.eu-north-1.amazonaws.com/",
+        "accessKeyId": "AKIAZQ3DQ3TIKI67LHNB",
+        "accessKeySecret": "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",
+        "region": "eu-north-1",
+        "maxTimeToUploadInSecs": 600,
+        "maxTimeToDownloadInSecs": 1200
     }
 }

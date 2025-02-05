@@ -40,7 +40,7 @@ async function login(userDetails) {
     }
 }
 
-async function fetchUsers(userId , isFriends){
+async function fetchUsers(userId, isFriends) {
     try {
         let user = await dao.getOne({ "userId": userId });
         if (!user) {
@@ -49,9 +49,9 @@ async function fetchUsers(userId , isFriends){
 
         isFriends = isFriends === 'true' ? true : false;
         var friends = user.friends || [];
-        var query = isFriends ? {"friends" : {"$in" : friends} } : {"friends" : {"$nin" : friends} };
-        query.userId = { "$ne" : userId};
-        var friends = await dao.getBy(query , { "userId" : 1});
+        var query = isFriends ? { "friends": { "$in": friends } } : { "friends": { "$nin": friends } };
+        query.userId = { "$ne": userId };
+        var friends = await dao.getBy(query, { "userId": 1 });
 
         return Promise.resolve(friends);
     } catch (error) {
