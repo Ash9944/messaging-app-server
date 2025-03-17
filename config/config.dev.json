@@ -1,7 +1,8 @@
 {
     "dbConfig": {
         "url": "mongodb://127.0.0.1:27018/",
-        "db": "messaging-application"
+        "db": "messaging-application",
+        "replicaSet" : "gfsReplica5"
     },
     "aws": {
         "bucketName": "message-app-123",

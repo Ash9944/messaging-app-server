@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 
 function onLogin(userId) {
     try {
-        let cacheObject = { "token" : uuidv4() + '#' + userId , "userId" : userId};
+        let cacheObject = { "token": uuidv4() + '#' + userId, "userId": userId };
         set(userId, cacheObject, 15 * 60);
         let jwtPayload = { "userId": userId, stamp: new Date() };
-        return jwt.sign(jwtPayload, cacheObject.token , { expiresIn: 15 * 60 });
+        return jwt.sign(jwtPayload, cacheObject.token, { expiresIn: 15 * 60 });
     }
     catch (e) {
         throw e;
@@ -71,10 +71,10 @@ async function validateSocketToken(userId, token) {
 
 async function validateToken(req, res, next) {
     try {
-        if (!req.headers.token || !req.headers.userId)
+        if (!req.headers.token || !req.headers.userid)
             throw new Error("Missing authorization fields");
-        let userId = req.headers.userId;
-        let token = req.headers.applicantauthorization;
+        let userId = req.headers.userid;
+        let token = req.headers.token;
 
         await validateJwt(userId, token);
         return updateReqHeader(req, res, next);

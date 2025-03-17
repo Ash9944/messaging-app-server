@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import { fetchMessages, fetchAllMessages } from '../services/messageServices.js';
+import { validateToken } from '../middleware/auth.js';
 var router = Router();
 
-router.get('/fetch/:userId/:reciptentId/:groupId', async function (req, res, next) {
+router.get('/fetch/:userId/:reciptentId/:groupId', validateToken, async function (req, res, next) {
     try {
         if (!req.params.userId || !req.params.reciptentId) {
             throw new Error("Mandatory fields missing");
@@ -15,7 +16,7 @@ router.get('/fetch/:userId/:reciptentId/:groupId', async function (req, res, nex
     }
 })
 
-router.get('/:userId', async function (req, res, next) {
+router.get('/:userId', validateToken, async function (req, res, next) {
     try {
         if (!req.params.userId) {
             throw new Error("Mandatory fields missing");

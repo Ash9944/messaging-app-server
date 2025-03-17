@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { create , fetchSingleGroup , deletegroup , updateGroup } from '../services/groupChatServices.js';
+import { create, fetchSingleGroup, deletegroup, updateGroup } from '../services/groupChatServices.js';
+import { validateToken } from '../middleware/auth.js';
 var router = Router();
 
-router.post('/', async function (req, res, next) {
+router.post('/', validateToken, async function (req, res, next) {
     try {
         if (!req.body) {
             throw new Error("Mandatory fields missing");
@@ -15,7 +16,7 @@ router.post('/', async function (req, res, next) {
     }
 })
 
-router.get('/:groupId', async function (req, res, next) {
+router.get('/:groupId', validateToken, async function (req, res, next) {
     try {
         if (!req.params.groupId) {
             throw new Error("Mandatory fields missing");
@@ -28,7 +29,7 @@ router.get('/:groupId', async function (req, res, next) {
     }
 })
 
-router.delete('/:groupId', async function (req, res, next) {
+router.delete('/:groupId', validateToken, async function (req, res, next) {
     try {
         if (!req.params.groupId) {
             throw new Error("Mandatory fields missing");
@@ -42,13 +43,13 @@ router.delete('/:groupId', async function (req, res, next) {
 })
 
 
-router.put('/:groupId', async function (req, res, next) {
+router.put('/:groupId', validateToken, async function (req, res, next) {
     try {
         if (!req.params.groupId || !req.body) {
             throw new Error("Mandatory fields missing");
         }
 
-        let response = await updateGroup(req.params.groupId , req.body);
+        let response = await updateGroup(req.params.groupId, req.body);
         res.send(response);
     } catch (error) {
         res.status(500).send({ error: error.name, message: error.message });
